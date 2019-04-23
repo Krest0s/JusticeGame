@@ -1,2 +1,2 @@
 # JusticeGame
-Game for my friend from rta
+Game for my friend from RTA CUSTOMS
