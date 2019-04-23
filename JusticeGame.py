@@ -6,12 +6,14 @@ category = ['Страна','Столица','Правитель']
 
 def openfile():
     f=open('massive.txt')
-    for i in range():
-        a=[f.readline(),f.readline(),f.readline()]
+    for i in range(3):
+        a = []
+        for j in range(5):
+            a.insert(j,f.readline())
         massive.insert(i, a)
     f.close()
-    for i in range(5):
-        for j in range(3):
+    for i in range(3):
+        for j in range(5):
             massive[i][j] = massive[i][j].replace('\n', '')
 
 def country():
