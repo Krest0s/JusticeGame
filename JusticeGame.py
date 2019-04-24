@@ -57,10 +57,10 @@ def ruler():
         text.insert(1.0, 'Cлучайная страна - ')
         text.insert(2.0, ra)
         text.insert(3.0, '\n')
-
 openfile()
 root = Tk()
 root.title("Justice Game")
+root.iconbitmap('icon.ico')
 root.geometry("640x640")
 w=10
 h=1
