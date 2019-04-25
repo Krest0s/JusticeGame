@@ -18,64 +18,57 @@ def openfile():
 
 def country():
     if massive[0]==[]:
-        text.delete(1.0, END)
-        text.insert(1.0,'Игра окончена!')
+        label_var.set('Игра окончена!')
     else:
         i=random.randint(0,len(massive[0])-1)
         ra=massive[0].pop(i)
         del massive[1][i]
         del massive[2][i]
-        text.delete(1.0, END)
-        text.insert(1.0,'Cлучайная страна - ')
-        text.insert(2.0,ra)
-        text.insert(3.0,'\n')
+        label_var.set('Случайная страна - ' + ra)
+        label.update()
 
 def capital():
     if massive[1]==[]:
-        text.delete(1.0, END)
-        text.insert(1.0,'Игра окончена!')
+        label_var.set('Игра окончена!')
     else:
         i=random.randint(0,len(massive[1])-1)
         ra=massive[1].pop(i)
         del massive[0][i]
         del massive[2][i]
-        text.delete(1.0, END)
-        text.insert(1.0, 'Cлучайная страна - ')
-        text.insert(2.0, ra)
-        text.insert(3.0, '\n')
+        label_var.set('Случайная столица - ' + ra)
+        label.update()
 
 def ruler():
     if massive[2]==[]:
-        text.delete(1.0, END)
-        text.insert(1.0,'Игра окончена!')
+        #text.delete(1.0, END)
+        label_var.set('Игра окончена!')
     else:
         i=random.randint(0,len(massive[2])-1)
         ra=massive[2].pop(i)
         del massive[0][i]
         del massive[1][i]
-        text.delete(1.0, END)
-        text.insert(1.0, 'Cлучайная страна - ')
-        text.insert(2.0, ra)
-        text.insert(3.0, '\n')
+        label_var.set('Случайный правитель - ' + ra)
+        label.update
+
 openfile()
+
 root = Tk()
 root.title("Justice Game")
 root.iconbitmap('icon.ico')
 root.geometry("640x640")
 w=10
 h=1
-s='left'
+s='top'
 x=50
-frame = Frame(relief=RAISED, borderwidth=1,height=1)
-text = Text(font='16')
-text.pack()
-frame.pack(fill=BOTH, expand=True)
+
+label_var = StringVar()
+label = Label(root, font='40', bg="white", width=100, height=13, textvariable=label_var)
+label.pack()
+
 btn1 = Button(text=category[0], background="white", foreground="black", width=w, height=h, font="16", command=country,padx=x)
 btn1.pack(side=s)
 btn2 = Button(text=category[1], background="white", foreground="black", width=w, height=h, font="16", command=capital,padx=x)
 btn2.pack(side=s)
 btn3 = Button(text=category[2], background="white", foreground="black", width=w, height=h, font="16", command=ruler,padx=x)
 btn3.pack(side=s)
-label = Label()
-label.pack()
 root.mainloop()
