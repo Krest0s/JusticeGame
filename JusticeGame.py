@@ -1,12 +1,10 @@
-from tkinter import *
+from tkinter import Tk, Text, Button, END
 import random
 
-
-massive=[]                  #в этом массиве будет все хранится
-clever=[]                    #массив для самых умных
-category = ['Термин','Определение','Вопрос на засыпку(слишком умный?)']             #названия кнопок
-n=148      #количество примеров в категории
-
+massive=[]                                                                            #в этом массиве будет все хранится
+clever=[]                                                                             #массив для самых умных
+category = ['Термин','Определение','Вопрос на засыпку(слишком умный?)']               #названия кнопок
+n=148                                                                                 #количество примеров в категории
 
 def openfile():
     f=open('massive.txt')
@@ -32,8 +30,8 @@ def openfile():
     c.close()
 
 
-
 def otvet():
+    btn4.forget()
     if  r==0:
         text.delete(1.0, END)
         text.insert(1.0, 'Ответ - ')
@@ -49,11 +47,18 @@ def otvet():
         text.insert(1.0, 'Ответ - ')
         text.insert(2.0, clever[0][i])
         del clever[0][i]
+    btn1.pack()
+    btn2.pack()
+    btn3.pack()
 
 def termin():
     if massive[0]==[]:
         text.delete(1.0, END)
         text.insert(1.0, 'Игра окончена!')
+        btn1.forget()
+        btn2.forget()
+        btn3.forget()
+        btn4.forget()
     else:
         global r, i
         i=random.randint(0,len(massive[0])-1)
@@ -63,12 +68,20 @@ def termin():
         text.insert(2.0, ra)
         text.insert(3.0, '?')
         r=0
+        btn1.forget()
+        btn2.forget()
+        btn3.forget()
+        btn4.pack()
     return r,i
 
 def opred():
     if massive[1]==[]:
         text.delete(1.0, END)
         text.insert(1.0, 'Игра окончена!')
+        btn1.forget()
+        btn2.forget()
+        btn3.forget()
+        btn4.forget()
     else:
         global i, r
         i=random.randint(0,len(massive[1])-1)
@@ -78,12 +91,18 @@ def opred():
         text.insert(2.0, ra)
         text.insert(3.0, '?')
         r=1
+        btn1.forget()
+        btn2.forget()
+        btn3.forget()
+        btn4.pack()
     return r, i
 
 def smart():
     if clever[1]==[]:
         text.delete (1.0, END)
         text.insert (1.0, 'Вопросы для умных кончились!')
+        btn3.destroy()
+        btn4.forget()
     else:
         global r, i
         i=random.randint(0,len(clever[1])-1)
@@ -92,6 +111,10 @@ def smart():
         text.insert(1.0, 'Вопрос - ')
         text.insert(2.0, ra)
         r=2
+        btn1.forget()
+        btn2.forget()
+        btn3.forget()
+        btn4.pack()
     return r,i
 
 openfile()
@@ -119,6 +142,5 @@ btn2.pack(side=s)
 btn3 = Button(text=category[2], background="white", foreground="black", width=w, height=h, font=f, command=smart,padx=x, pady=y)
 btn3.pack(side=s)
 btn4 = Button(text='Ответ', background="white", foreground="black", width=w, height=h, font=f, command=otvet, padx=x, pady=y)
-btn4.pack(side=s)
 
 root.mainloop()
